@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import * as React from 'react';
 
-const DeleTeDialog = ({setOpen,open,handleDelete,id}) => {
+const DeleTeDialog = ({setOpen,open,handleDelete,id,children}) => {
     
 
 const handleClickOpen = () => {
@@ -43,7 +43,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
           <Alert variant="filled" severity="error">
-            Are you sure you want to cancel this order!
+            {children}
             </Alert>
           </DialogContentText>
         </DialogContent>

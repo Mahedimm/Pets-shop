@@ -4,19 +4,7 @@ import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import { Box } from '@mui/system';
 import React from 'react';
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width:'40%',
-  height:'50%',
-  bgcolor: 'background.paper',
-  
-  borderRadius:'15px',
-  boxShadow: 24,
-  p: 4,
-};
+
 
 const AddProduct = () => {
     const [confirm,setConfirm] = React.useState(false);
@@ -39,7 +27,7 @@ const AddProduct = () => {
    
    
         //Send data to server
-          fetch('http://localhost:5000/products',{
+          fetch('https://glacial-depths-55113.herokuapp.com/products',{
               method:'POST',
               headers:{
                   'Content-Type':'application/json'

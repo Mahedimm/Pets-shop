@@ -7,10 +7,10 @@ const ProductDetails = () => {
     const {productId} = useParams();
     const [product, setProduct] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${productId}`)
+        fetch(`https://glacial-depths-55113.herokuapp.com/products/${productId}`)
         .then(res => res.json())
         .then(data => setProduct(data))
-    },[])
+    },[productId])
     return (
         <div>
             <Navigation/>

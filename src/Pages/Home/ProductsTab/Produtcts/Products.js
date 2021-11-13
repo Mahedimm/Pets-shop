@@ -11,11 +11,11 @@ const Products = () => {
           
                 {
                    
-                    products.slice(0,3).map(product=> <ProductCard product={product} key={product.name}></ProductCard>)
+                    products.slice(0,6).map(product=> <ProductCard product={product} key={product.name}></ProductCard>)
                    
                 }
                 <Typography >
-                    <Link >
+                    <Link to="/ourProducts" style={{color:'#82b440'}}>
                     See All
                     </Link>
                 </Typography>

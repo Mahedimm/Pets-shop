@@ -5,7 +5,7 @@ const ReviewCard = ({review}) => {
     const {name,image,rating,description} = review;
     return (
         <Grid item xs={12} sm={6} md={4} >
-            <Paper elevation={3} style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}sx={{p:5}}>
+            <Paper elevation={3} style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',height:250}}sx={{p:5}}>
              <Avatar
                 alt={name}
                 src={image}

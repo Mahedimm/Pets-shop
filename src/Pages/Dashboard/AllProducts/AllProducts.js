@@ -1,5 +1,4 @@
 import { Typography } from '@mui/material';
-import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -9,22 +8,22 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Box } from '@mui/system';
-import React, { useEffect } from 'react';
+import React from 'react';
+import useProducts from '../../../Hooks/useProducts';
 import DeleTeDialog from '../../Shared/DeleteDialog/DeleTeDialog';
+const AllProducts = () => {
 
-const AllOrders = () => {
     const [open, setOpen] = React.useState(false);
     const [allOrders, setAllOrders] = React.useState([]);
-    const [confirm,setConfirm] = React.useState(false);
-    const [status, setStatus] = React.useState('pending');
-    useEffect(() => {
+    const {products} = useProducts();
+    // useEffect(() => {
 
-        fetch("https://glacial-depths-55113.herokuapp.com/orders/")
-        .then(res => res.json())
-        .then(data => {
-            setAllOrders(data);
-        })
-    },[]);
+    //     fetch("https://glacial-depths-55113.herokuapp.com/orders/")
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         setAllOrders(data);
+    //     })
+    // },[]);
     
      const handleDelete = (id)=>{
         const url = `https://glacial-depths-55113.herokuapp.com/orders/${id}`;
@@ -42,29 +41,7 @@ const AllOrders = () => {
         })
     }
    
-    const handleUpdate = (id) =>{
-        // const admin = {email:values.adminEmail} ;
-        setStatus('confirm');
-        const newStatus ={status:status};
-            console.log(newStatus);
-        fetch(`https://glacial-depths-55113.herokuapp.com/orders/${id}`,{
-            method: 'PUT',
-            headers: {
-              
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(newStatus)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.modifiedCount){
-                setConfirm(true);
-                
-                // console.log(data);
-                
-               
-            }
-        })}
+ 
     
  
 
@@ -90,15 +67,16 @@ const AllOrders = () => {
           border: 0,
         },
       }));
+
     return (
         <div>
         <Box container>
             <Box style={{display:'flex',justifyContent: 'space-between'}} sx={{p:2}}>
             <Typography style={{color:'#1CC7C1',fontSize:20}}>
-               Orders
+               Products
             </Typography>
             <Typography style={{color:'#8B8888',fontSize:14}}>
-               Total Order:  {allOrders.length}
+               Total Products:  {products.length}
             </Typography>
         </Box>
         <TableContainer component={Paper}>
@@ -108,11 +86,11 @@ const AllOrders = () => {
         <StyledTableCell>Id</StyledTableCell>
         <StyledTableCell>Name </StyledTableCell>
         <StyledTableCell>Action </StyledTableCell>
-        <StyledTableCell>Status</StyledTableCell>
+        <StyledTableCell>Stock</StyledTableCell>
       </TableRow>
     </TableHead>
     <TableBody>
-      {allOrders.map((row) => (
+      {products.map((row) => (
         <StyledTableRow >
           <StyledTableCell component="th" scope="row">
             {row._id}
@@ -122,23 +100,12 @@ const AllOrders = () => {
           </StyledTableCell>
           <StyledTableCell align="right" style={{display:'flex',justifyContent:'center'}}>
               <DeleTeDialog handleDelete={handleDelete} id={row._id}setOpen={setOpen}open={open}>
-                Are you sure you want to delete this order?
+                  Are you sure you want to delete this product?
               </DeleTeDialog>
-             
-             <Box>
-             <Button style={{
-                              backgroundColor:'#82b440',
-                               color:'white' }} 
-                               sx={{px:3,py:1,borderRadius: 20}} variant="outlined" onClick={()=>handleUpdate(row._id)} >
-                               Confirm
-                            </Button>
-             </Box>
-             
-            
-            
+         
           </StyledTableCell>
           <StyledTableCell>
-               {row.status}
+               {row.quantity || row.stock}
           </StyledTableCell>
           
          
@@ -152,4 +119,4 @@ const AllOrders = () => {
     );
 };
 
-export default AllOrders;
+export default AllProducts;

@@ -11,6 +11,7 @@ import { Box } from '@mui/system';
 import React, { useEffect } from 'react';
 import useAuth from '../../Hooks/useAuth';
 import DeleTeDialog from '../Shared/DeleteDialog/DeleTeDialog';
+import PaymentModal from './PaymentModal';
 
 
 const UserOrder = () => {
@@ -19,13 +20,13 @@ const UserOrder = () => {
     
     const [userOrders, setUserOrders] = React.useState([]);
     useEffect(() => {
-        const url =`http://localhost:5000/userOrders?customerEmail=${user.email}`
+        const url =`https://glacial-depths-55113.herokuapp.com/userOrders?customerEmail=${user.email}`
         fetch(url)
         .then(res => res.json())
         .then(data => {
             setUserOrders(data);
         })
-    },[]);
+    },[user.email]);
     // const handleDelete = (id)=>{
     //     const url = `http://localhost:5000/order/${id}`;
     //     fetch(url,{
@@ -43,7 +44,7 @@ const UserOrder = () => {
     // }
 
     const  handleDelete = (id) =>{
-        const url = `http://localhost:5000/orders/${id}`;
+        const url = `https://glacial-depths-55113.herokuapp.com/orders/${id}`;
         fetch(url,{
             method: "DELETE"
         })
@@ -109,11 +110,11 @@ const UserOrder = () => {
               <StyledTableCell align="right">
               <Chip label={row.status} style={{color:'#82b440'}} />
               </StyledTableCell>
-              <StyledTableCell align="right">
+              <StyledTableCell align="right" style={{display:'flex',justifyContent:'center'}}>
+                  <PaymentModal/>
                   <DeleTeDialog open={open} setOpen={setOpen} handleDelete={handleDelete} id={row._id}/>
-              {/* <Button onClick={()=>handleDelete(row._id)}>
-            Delete
-          </Button> */}
+               
+          
               </StyledTableCell>
               
               

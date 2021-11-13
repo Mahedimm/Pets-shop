@@ -8,19 +8,7 @@ import useProducts from '../../Hooks/useProducts';
 import Footer from '../Shared/Footer/Footer';
 import Navigation from '../Shared/Navigation/Navigation';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width:'40%',
-  height:'50%',
-  bgcolor: 'background.paper',
-  
-  borderRadius:'15px',
-  boxShadow: 24,
-  p: 4,
-};
+
 
 const ConfirmOrder = () => {
     const {user} = useAuth();
@@ -42,7 +30,7 @@ const ConfirmOrder = () => {
             ...order,status:'pending'
         }
         //Send data to server
-          fetch('http://localhost:5000/orders',{
+          fetch('https://glacial-depths-55113.herokuapp.com/orders',{
               method:'POST',
               headers:{
                   'Content-Type':'application/json'
@@ -124,7 +112,10 @@ const ConfirmOrder = () => {
                     </form>
       </Container>
 }
-    <Footer/>
+            <Box style={{bottom:'0',position:'absolute',width:'100%'}}>
+            <Footer/>
+            </Box>
+   
       </Box>
     );
 };

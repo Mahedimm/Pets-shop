@@ -5,7 +5,7 @@ const useProducts = () => {
     const [cartProduct,setCartProduct] = React.useState([]);
     const [products, setProducts] = React.useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/products')
+        fetch('https://glacial-depths-55113.herokuapp.com/products')
         .then(res => res.json())
         .then(data => setProducts(data))
     },[])

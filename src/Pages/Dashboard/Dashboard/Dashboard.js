@@ -1,4 +1,4 @@
-import { AddCircleOutline, AdminPanelSettings } from '@mui/icons-material';
+import { AddCircleOutline, AdminPanelSettings, Handyman } from '@mui/icons-material';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
 import RateReviewIcon from '@mui/icons-material/RateReview';
@@ -18,7 +18,7 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import {
-    Link, Route, Switch, useRouteMatch
+  Link, Route, Switch, useRouteMatch
 } from "react-router-dom";
 import useAuth from '../../../Hooks/useAuth';
 import AdminRoute from '../../Account/AdminRouter/AdminRoute';
@@ -26,6 +26,7 @@ import UserOrder from '../../UserOrder/UserOrder';
 import AddProduct from '../AddProduct/AddProduct';
 import AddReview from '../AddReview/AddReview';
 import AllOrders from '../AllOrders/AllOrders';
+import AllProducts from '../AllProducts/AllProducts';
 import DashboardHome from '../DashboardHome/DashboardHome';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 const drawerWidth = 240;
@@ -66,7 +67,17 @@ function Dashboard(props) {
             < ReorderIcon/>
             </ListItemIcon>
             <ListItemText>
-              All Orders
+              Manage Orders
+            </ListItemText>
+          </ListItem>
+      </Link>
+       <Link to={`${url}/manageProducts`} style={{textDecoration:'none',color:'#262626'}}>
+          <ListItem button >
+            <ListItemIcon>
+            <Handyman/>
+            </ListItemIcon>
+            <ListItemText>
+             Manage Products
             </ListItemText>
           </ListItem>
       </Link>
@@ -207,9 +218,9 @@ function Dashboard(props) {
         <Route path={`${path}/review`}>
           <AddReview/>
         </Route>
-        <Route path={`${path}/addProduct`}>
-          <AddProduct />
-        </Route>
+        <AdminRoute path={`${path}/manageProducts`}>
+          <AllProducts />
+        </AdminRoute>
         <AdminRoute exact path={path}>
           <DashboardHome/>
         </AdminRoute>

@@ -2,14 +2,14 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 
-const CartCard = ({item}) => {
-    const {name,price,image,_id} =item;
 
-    const theme = useTheme();
+const CartCard = ({item}) => {
+    const {name,price,image,} =item;
+
+ 
     return (
         <Card sx={{ display: 'flex' }}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>

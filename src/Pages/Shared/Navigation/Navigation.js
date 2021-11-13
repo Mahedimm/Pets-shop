@@ -1,5 +1,6 @@
-import { Dashboard, Login, Logout } from '@mui/icons-material';
+import { Login, Logout } from '@mui/icons-material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import MenuIcon from '@mui/icons-material/Menu';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -21,9 +22,8 @@ import logo from '../../../images/logo1.png';
 
 
 
-
 const Navigation = ()=> {
-  const {user,logOut,admin} = useAuth();
+  const {user,logOut} = useAuth();
   const {cartProduct} = useProducts();
    
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -101,10 +101,10 @@ const Navigation = ()=> {
       
     </MenuItem>
     <MenuItem >
-      <Dashboard>
-        <Logout fontSize="small" />
-      </Dashboard>
-      <Link to="/dashboard" style={{textDecoration:'none',color:'#545454' }}>Dashboard</Link>
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <Link to="/dashboard" style={{textDecoration:'none',color:'#545454' }}> Dashboard</Link>
     </MenuItem>
     {/* <MenuItem>
       <Avatar /> My account

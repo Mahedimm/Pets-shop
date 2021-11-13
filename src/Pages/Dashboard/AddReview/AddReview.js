@@ -7,19 +7,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width:'40%',
-  height:'50%',
-  bgcolor: 'background.paper',
-  
-  borderRadius:'15px',
-  boxShadow: 24,
-  p: 4,
-};
+
 const AddReview = () => {
     const {user} = useAuth();
     const [confirm,setConfirm] = React.useState(false);
@@ -45,7 +33,7 @@ const AddReview = () => {
             rating:rating,
         }
         //Send data to server
-          fetch('http://localhost:5000/reviews',{
+          fetch('https://glacial-depths-55113.herokuapp.com/reviews',{
               method:'POST',
               headers:{
                   'Content-Type':'application/json'
